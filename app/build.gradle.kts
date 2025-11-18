@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.otoservice"
+    namespace = "com.example.otoservice"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.otoservice"
+        applicationId = "com.example.otoservice"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

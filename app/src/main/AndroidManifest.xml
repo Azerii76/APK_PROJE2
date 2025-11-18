@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.otoservice">
+    package="com.example.otoservice">
 
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -8,9 +9,28 @@
     <!-- HATA DÜZELTMESİ: Konumun gerçekten değişmesi için zorunlu olan izin eklendi. -->
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
 
+    <!-- Mesajlaşma/sosyal medya uygulamalarını görebilmek için gerekli görünürlük bildirimleri -->
+    <queries>
+        <package android:name="com.whatsapp" />
+        <package android:name="org.telegram.messenger" />
+        <package android:name="com.instagram.android" />
+        <package android:name="com.facebook.orca" />
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.snapchat.android" />
+        <package android:name="com.discord" />
+        <package android:name="com.viber.voip" />
+        <package android:name="com.skype.raider" />
+        <package android:name="com.tinder" />
+        <package android:name="com.bumble.app" />
+        <package android:name="com.ftw_and_co.happn" />
+        <package android:name="com.linkedin.android" />
+        <package android:name="com.signal.android" />
+        <package android:name="com.google.android.apps.messaging" />
+        <package android:name="com.samsung.android.messaging" />
+    </queries>
+
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="OtoService"
@@ -18,10 +38,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OtoService">
         <activity
-            android:name="com.otoservice.LicenseActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.otoservice.MainActivity"
+            android:name="com.example.otoservice.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.OtoService">
             <intent-filter>
@@ -31,7 +48,7 @@
         </activity>
 
         <service
-            android:name="com.otoservice.AutomationService"
+            android:name="com.example.otoservice.AutoReplyService"
             android:exported="false"
             android:label="OtoService"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
@@ -41,7 +58,7 @@
         </service>
 
         <service
-            android:name="com.otoservice.LocationAutomationService"
+            android:name="com.example.otoservice.LocationSpoofService"
             android:exported="false"
             android:foregroundServiceType="location" />
 
