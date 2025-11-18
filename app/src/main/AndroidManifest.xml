@@ -8,6 +8,26 @@
     <!-- HATA DÜZELTMESİ: Konumun gerçekten değişmesi için zorunlu olan izin eklendi. -->
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
 
+    <!-- Mesajlaşma/sosyal medya uygulamalarını görebilmek için gerekli görünürlük bildirimleri -->
+    <queries>
+        <package android:name="com.whatsapp" />
+        <package android:name="org.telegram.messenger" />
+        <package android:name="com.instagram.android" />
+        <package android:name="com.facebook.orca" />
+        <package android:name="com.facebook.katana" />
+        <package android:name="com.snapchat.android" />
+        <package android:name="com.discord" />
+        <package android:name="com.viber.voip" />
+        <package android:name="com.skype.raider" />
+        <package android:name="com.tinder" />
+        <package android:name="com.bumble.app" />
+        <package android:name="com.ftw_and_co.happn" />
+        <package android:name="com.linkedin.android" />
+        <package android:name="com.signal.android" />
+        <package android:name="com.google.android.apps.messaging" />
+        <package android:name="com.samsung.android.messaging" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

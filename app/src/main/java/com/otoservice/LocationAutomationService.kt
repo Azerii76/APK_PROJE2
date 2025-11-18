@@ -15,6 +15,7 @@ import android.os.Looper
 import android.os.SystemClock
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.otoservice.LocationDefaults.RANDOM_DISTRICT
 import kotlin.random.Random
 
 class LocationAutomationService : Service() {
@@ -55,9 +56,9 @@ class LocationAutomationService : Service() {
                 mockLocation()
             }
             val minutes = try {
-                prefs.getLong(PreferenceStore.KEY_LOCATION_INTERVAL_MIN, 10L)
+                prefs.getLong(PreferenceStore.KEY_LOCATION_INTERVAL_MIN, 15L)
             } catch (e: ClassCastException) {
-                val badValue = prefs.getInt(PreferenceStore.KEY_LOCATION_INTERVAL_MIN, 10)
+                val badValue = prefs.getInt(PreferenceStore.KEY_LOCATION_INTERVAL_MIN, 15)
                 prefs.setLong(PreferenceStore.KEY_LOCATION_INTERVAL_MIN, badValue.toLong())
                 Log.w("OtoService", "Bozuk konum aralığı verisi düzeltildi.")
                 badValue.toLong()
@@ -129,11 +130,17 @@ class LocationAutomationService : Service() {
     }
 
     private fun mockLocation() {
-        val selectedDistrict = prefs.getString(PreferenceStore.KEY_LOCATION_DISTRICT, "Kadıköy")!!
-        val centerCoords = districtCoordinates[selectedDistrict] ?: (41.0082 to 28.9784)
+        val selectedDistrict = prefs.getString(PreferenceStore.KEY_LOCATION_DISTRICT, RANDOM_DISTRICT)
+            ?: RANDOM_DISTRICT
+        val centerDistrict = if (selectedDistrict == RANDOM_DISTRICT) {
+            districtCoordinates.keys.random()
+        } else {
+            selectedDistrict
+        }
+        val centerCoords = districtCoordinates[centerDistrict] ?: (41.0082 to 28.9784)
 
         val latOffset = Random.nextDouble(-0.045, 0.045)
-        val lonOffset = Random.nextDouble(-0.045, 0.045) 
+        val lonOffset = Random.nextDouble(-0.045, 0.045)
         
         val newLat = centerCoords.first + latOffset
         val newLon = centerCoords.second + lonOffset
@@ -148,7 +155,7 @@ class LocationAutomationService : Service() {
                 time = System.currentTimeMillis()
             }
             locationManager.setTestProviderLocation(providerName, mockLocation)
-            Log.d("OtoService", "Sahte konum sisteme bildirildi: $newLat, $newLon")
+            Log.d("OtoService", "Sahte konum sisteme bildirildi ($centerDistrict): $newLat, $newLon")
         } catch (e: Exception) {
             Log.e("OtoService", "Sahte konum sisteme bildirilemedi.", e)
         }

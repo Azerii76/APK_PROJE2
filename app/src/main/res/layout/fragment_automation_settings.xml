@@ -8,11 +8,19 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchAutoReply"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Otomatik Yanıtı Aç" />
+            android:text="Gelen mesajlara otomatik yanıt ver"
+            android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Bildirim erişimi olmadan yanıt gönderilemez. Açık değilse izin ekranı otomatik açılır."
+            android:textAppearance="?attr/textAppearanceCaption" />
 
         <EditText
             android:id="@+id/etReply"
@@ -20,6 +28,13 @@
             android:layout_height="wrap_content"
             android:hint="Yanıt metni"
             android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Metin boş bırakılırsa otomatik yanıt gönderilmez."
+            android:textAppearance="?attr/textAppearanceCaption" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,6 +47,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Uygulama Seç" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="WhatsApp, Telegram, Instagram gibi desteklenen uygulamalar otomatik taranır."
+            android:textAppearance="?attr/textAppearanceCaption" />
 
         <LinearLayout
             android:id="@+id/chipContainer"
@@ -46,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Yanıt sıklığı (saniye)" />
+            android:text="Aynı sohbete yeniden yanıt verme süresi (saniye)" />
 
         <Spinner
             android:id="@+id/spinnerFrequency"
