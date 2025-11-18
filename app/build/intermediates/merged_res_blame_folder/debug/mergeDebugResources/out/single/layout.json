@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-mergeDebugResources-31:\\layout\\fragment_dashboard.xml",
+        "source": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-main-34:\\layout\\fragment_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-mergeDebugResources-31:\\layout\\fragment_location_settings.xml",
+        "source": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-main-34:\\layout\\fragment_location_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-mergeDebugResources-31:\\layout\\fragment_logs.xml",
+        "source": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-main-34:\\layout\\fragment_logs.xml"
+    },
+    {
+        "merged": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-mergeDebugResources-31:\\layout\\fragment_automation_settings.xml",
+        "source": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-main-34:\\layout\\fragment_automation_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-mergeDebugResources-31:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-main-34:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "com.otoservice.app-mergeDebugResources-31:/layout/fragment_dashboard.xml",
+        "source": "com.otoservice.app-main-34:/layout/fragment_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-mergeDebugResources-31:\\layout\\item_log.xml",
+        "source": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-main-34:\\layout\\item_log.xml"
+    },
+    {
+        "merged": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-mergeDebugResources-31:\\layout\\activity_license.xml",
+        "source": "C:\\Users\\bilgiislem2\\.gradle\\daemon\\9.0-milestone-1\\com.otoservice.app-main-34:\\layout\\activity_license.xml"
+    }
+]

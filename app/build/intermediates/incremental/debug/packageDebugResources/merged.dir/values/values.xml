@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="black">#000000</color>
+    <color name="colorError">#D32F2F</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="white">#FFFFFF</color>
+    <string name="activate_license">Lisansı Aktive Et</string>
+    <string name="app_name">OtoService</string>
+    <string name="auto_reply_message_hint">Yanıt metni</string>
+    <string name="auto_reply_switch">Otomatik Yanıt</string>
+    <string name="automation_settings">Otomasyon Ayarları</string>
+    <string name="dashboard_title">Ana Panel</string>
+    <string name="frequency_label">Yanıt sıklığı (saniye)</string>
+    <string name="license_key_hint">Lisans anahtarınızı girin</string>
+    <string name="license_screen">Lisans</string>
+    <string name="license_status">Lisans Durumu</string>
+    <string name="location_frequency_label">Konum değişim sıklığı (dakika)</string>
+    <string name="location_settings">Konum Ayarları</string>
+    <string name="logs_title">İşlem Geçmişi</string>
+    <string name="open_license_screen">Lisans ekranına git</string>
+    <string name="select_applications">Uygulama Seç</string>
+    <string name="selected_apps">Seçilen Uygulamalar</string>
+    <style name="Theme.OtoService" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor" ns1:targetApi="l">@color/purple_700</item>
+        <item name="android:navigationBarColor" ns1:targetApi="o">@color/purple_700</item>
+    </style>
+</resources>

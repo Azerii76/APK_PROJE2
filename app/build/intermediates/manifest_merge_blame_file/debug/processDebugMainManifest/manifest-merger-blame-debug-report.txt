@@ -1,0 +1,196 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.otoservice"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+11-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:4:5-77
+11-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:4:22-74
+12    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+12-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:5:5-81
+12-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:5:22-78
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:6:5-79
+13-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:6:22-76
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+14-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:7:5-77
+14-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:7:22-74
+15    <!-- HATA DÜZELTMESİ: Konumun gerçekten değişmesi için zorunlu olan izin eklendi. -->
+16    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+16-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:9:5-79
+16-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:9:22-76
+17
+18    <permission
+18-->[androidx.core:core:1.12.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\a151af2593a842fe777c6c54935ea9db\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+19        android:name="com.otoservice.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+19-->[androidx.core:core:1.12.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\a151af2593a842fe777c6c54935ea9db\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+20        android:protectionLevel="signature" />
+20-->[androidx.core:core:1.12.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\a151af2593a842fe777c6c54935ea9db\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+21
+22    <uses-permission android:name="com.otoservice.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+22-->[androidx.core:core:1.12.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\a151af2593a842fe777c6c54935ea9db\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+22-->[androidx.core:core:1.12.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\a151af2593a842fe777c6c54935ea9db\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+23
+24    <application
+24-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:11:5-57:19
+25        android:allowBackup="true"
+25-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:12:9-35
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.12.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\a151af2593a842fe777c6c54935ea9db\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+27        android:dataExtractionRules="@xml/data_extraction_rules"
+27-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:13:9-65
+28        android:debuggable="true"
+29        android:extractNativeLibs="false"
+30        android:fullBackupContent="@xml/backup_rules"
+30-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:14:9-54
+31        android:icon="@mipmap/ic_launcher"
+31-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:15:9-43
+32        android:label="OtoService"
+32-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:16:9-35
+33        android:roundIcon="@mipmap/ic_launcher_round"
+33-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:17:9-54
+34        android:supportsRtl="true"
+34-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:18:9-35
+35        android:theme="@style/Theme.OtoService" >
+35-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:19:9-48
+36        <activity
+36-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:20:9-22:40
+37            android:name="com.otoservice.LicenseActivity"
+37-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:21:13-58
+38            android:exported="false" />
+38-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:22:13-37
+39        <activity
+39-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:23:9-31:20
+40            android:name="com.otoservice.MainActivity"
+40-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:24:13-55
+41            android:exported="true"
+41-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:25:13-36
+42            android:theme="@style/Theme.OtoService" >
+42-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:26:13-52
+43            <intent-filter>
+43-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:27:13-30:29
+44                <action android:name="android.intent.action.MAIN" />
+44-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:28:17-69
+44-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:28:25-66
+45
+46                <category android:name="android.intent.category.LAUNCHER" />
+46-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:29:17-77
+46-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:29:27-74
+47            </intent-filter>
+48        </activity>
+49
+50        <service
+50-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:33:9-41:19
+51            android:name="com.otoservice.AutomationService"
+51-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:34:13-60
+52            android:exported="false"
+52-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:35:13-37
+53            android:label="OtoService"
+53-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:36:13-39
+54            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+54-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:37:13-87
+55            <intent-filter>
+55-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:38:13-40:29
+56                <action android:name="android.service.notification.NotificationListenerService" />
+56-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:39:17-99
+56-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:39:25-96
+57            </intent-filter>
+58        </service>
+59        <service
+59-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:43:9-46:56
+60            android:name="com.otoservice.LocationAutomationService"
+60-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:44:13-68
+61            android:exported="false"
+61-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:45:13-37
+62            android:foregroundServiceType="location" />
+62-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:46:13-53
+63
+64        <provider
+65            android:name="androidx.core.content.FileProvider"
+65-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:49:13-62
+66            android:authorities="com.otoservice.provider"
+66-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:50:13-60
+67            android:exported="false"
+67-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:51:13-37
+68            android:grantUriPermissions="true" >
+68-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:52:13-47
+69            <meta-data
+69-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:53:13-55:54
+70                android:name="android.support.FILE_PROVIDER_PATHS"
+70-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:54:17-67
+71                android:resource="@xml/file_paths" />
+71-->C:\Users\bilgiislem2\AndroidStudioProjects\APKPROJE1\app\src\main\AndroidManifest.xml:55:17-51
+72        </provider>
+73        <provider
+73-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\9fd4c16fa6d6c3e8b906c0d0cf0f8f79\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+74            android:name="androidx.startup.InitializationProvider"
+74-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\9fd4c16fa6d6c3e8b906c0d0cf0f8f79\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+75            android:authorities="com.otoservice.androidx-startup"
+75-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\9fd4c16fa6d6c3e8b906c0d0cf0f8f79\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+76            android:exported="false" >
+76-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\9fd4c16fa6d6c3e8b906c0d0cf0f8f79\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+77            <meta-data
+77-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\9fd4c16fa6d6c3e8b906c0d0cf0f8f79\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+78                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+78-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\9fd4c16fa6d6c3e8b906c0d0cf0f8f79\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+79                android:value="androidx.startup" />
+79-->[androidx.emoji2:emoji2:1.2.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\9fd4c16fa6d6c3e8b906c0d0cf0f8f79\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+80            <meta-data
+80-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\f1bf7aebac3622363590aa111f143a86\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+81                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+81-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\f1bf7aebac3622363590aa111f143a86\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+82                android:value="androidx.startup" />
+82-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\f1bf7aebac3622363590aa111f143a86\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+83            <meta-data
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+84                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+85                android:value="androidx.startup" />
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+86        </provider>
+87
+88        <receiver
+88-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+89            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+90            android:directBootAware="false"
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+91            android:enabled="true"
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+92            android:exported="true"
+92-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+93            android:permission="android.permission.DUMP" >
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+94            <intent-filter>
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+95                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+95-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+95-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+96            </intent-filter>
+97            <intent-filter>
+97-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+98                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+98-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+98-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+99            </intent-filter>
+100            <intent-filter>
+100-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+101                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+101-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+101-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+102            </intent-filter>
+103            <intent-filter>
+103-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+104                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+104-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+104-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\bilgiislem2\.gradle\caches\9.0-milestone-1\transforms\b44007b1ce09c7004c5576fd0058933a\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+105            </intent-filter>
+106        </receiver>
+107    </application>
+108
+109</manifest>

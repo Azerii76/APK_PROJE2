@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">OtoService</string>
+    <string name="license_key_hint">Lisans anahtarınızı girin</string>
+    <string name="activate_license">Lisansı Aktive Et</string>
+    <string name="license_status">Lisans Durumu</string>
+    <string name="dashboard_title">Ana Panel</string>
+    <string name="automation_settings">Otomasyon Ayarları</string>
+    <string name="location_settings">Konum Ayarları</string>
+    <string name="logs_title">İşlem Geçmişi</string>
+    <string name="auto_reply_switch">Otomatik Yanıt</string>
+    <string name="auto_reply_message_hint">Yanıt metni</string>
+    <string name="frequency_label">Yanıt sıklığı (saniye)</string>
+    <string name="location_frequency_label">Konum değişim sıklığı (dakika)</string>
+    <string name="selected_apps">Seçilen Uygulamalar</string>
+    <string name="select_applications">Uygulama Seç</string>
+    <string name="license_screen">Lisans</string>
+    <string name="open_license_screen">Lisans ekranına git</string>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <!-- HATA DÜZELTMESİ: Eksik renk tanımı eklendi. -->
+    <color name="colorError">#D32F2F</color>
+</resources>

@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="Ana" />
+    <item
+        android:id="@+id/nav_automation"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Otomasyon" />
+    <item
+        android:id="@+id/nav_location"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="Konum" />
+    <item
+        android:id="@+id/nav_logs"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="Geçmiş" />
+</menu>
