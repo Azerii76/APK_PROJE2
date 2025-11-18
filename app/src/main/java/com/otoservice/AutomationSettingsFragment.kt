@@ -1,9 +1,11 @@
 package com.otoservice
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +30,26 @@ class AutomationSettingsFragment : Fragment() {
     // Uygulama bilgilerini tutmak için güvenli bir data class
     data class AppInfo(val name: String, val packageName: String)
 
+    // Yaygın mesajlaşma/sosyal medya uygulama paketleri
+    private val supportedPackages = mapOf(
+        "com.whatsapp" to "WhatsApp",
+        "org.telegram.messenger" to "Telegram",
+        "com.instagram.android" to "Instagram",
+        "com.facebook.orca" to "Messenger",
+        "com.facebook.katana" to "Facebook",
+        "com.snapchat.android" to "Snapchat",
+        "com.discord" to "Discord",
+        "com.viber.voip" to "Viber",
+        "com.skype.raider" to "Skype",
+        "com.tinder" to "Tinder",
+        "com.bumble.app" to "Bumble",
+        "com.ftw_and_co.happn" to "Happn",
+        "com.linkedin.android" to "LinkedIn",
+        "com.signal.android" to "Signal",
+        "com.google.android.apps.messaging" to "Mesajlar",
+        "com.samsung.android.messaging" to "Samsung Mesajlar"
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -40,21 +62,26 @@ class AutomationSettingsFragment : Fragment() {
         val spinner = view.findViewById<Spinner>(R.id.spinnerFrequency)
 
         switchAuto.isChecked = prefs.getBoolean(PreferenceStore.KEY_AUTO_REPLY_ENABLED, false)
-        etReply.setText(prefs.getString(PreferenceStore.KEY_REPLY_TEXT, "Merhaba, otomatik yanıt"))
+        etReply.setText(prefs.getString(PreferenceStore.KEY_REPLY_TEXT, getString(R.string.default_reply)))
+        cleanupMissingSelections()
         renderSelectedApps()
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, FrequencyDefaults.replySeconds)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
-        val savedFreq = prefs.getLong(PreferenceStore.KEY_FREQUENCY_SECONDS, 5L).toInt()
+        val savedFreq = prefs.getLong(PreferenceStore.KEY_FREQUENCY_SECONDS, 15L).toInt()
         spinner.setSelection(FrequencyDefaults.replySeconds.indexOf(savedFreq).coerceAtLeast(0))
 
         switchAuto.setOnCheckedChangeListener { _, isChecked ->
             prefs.setBoolean(PreferenceStore.KEY_AUTO_REPLY_ENABLED, isChecked)
+            if (isChecked && !isNotificationServiceEnabled()) {
+                Toast.makeText(requireContext(), "Bildirim erişimi kapalı. İzin ekranı açılıyor.", Toast.LENGTH_LONG).show()
+                startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
+            }
         }
         btnSelect.setOnClickListener { showAppChooserDialog() }
         spinner.setOnItemSelectedListener(SimpleItemSelectedListener { index ->
-            val value = FrequencyDefaults.replySeconds.getOrElse(index) { 5 }
+            val value = FrequencyDefaults.replySeconds.getOrElse(index) { 15 }
             prefs.setLong(PreferenceStore.KEY_FREQUENCY_SECONDS, value.toLong())
         })
 
@@ -66,38 +93,54 @@ class AutomationSettingsFragment : Fragment() {
         prefs.setString(PreferenceStore.KEY_REPLY_TEXT, etReply.text.toString().trim())
     }
 
-    // HATA DÜZELTMESİ: Bu fonksiyon çökmelere karşı tamamen güvenli hale getirildi.
+    /**
+     * Cihazda kurulu olan ve desteklenen mesajlaşma/sosyal medya uygulamalarını döndürür.
+     * Diğer uygulamaları listeye dahil etmez; böylece kullanıcı gerçekten bildirim almaya uygun
+     * uygulamaları seçer.
+     */
     private fun getInstalledApps(pm: PackageManager): List<AppInfo> {
         val apps = mutableListOf<AppInfo>()
-        val installedPackages = pm.getInstalledApplications(PackageManager.GET_META_DATA)
-        for (appInfo in installedPackages) {
-            try {
-                // Adım 1: Sadece kullanıcının başlatabileceği (menüde görünen) uygulamaları değerlendir.
-                if (pm.getLaunchIntentForPackage(appInfo.packageName) == null) {
-                    continue
-                }
+        supportedPackages.forEach { (pkg, fallbackName) ->
+            val appInfo = runCatching { pm.getApplicationInfo(pkg, 0) }.getOrNull() ?: return@forEach
+            // Sadece kullanıcı tarafından açılabilir uygulamaları göster
+            if (pm.getLaunchIntentForPackage(pkg) == null) return@forEach
 
-                // Adım 2: Saf sistem uygulamalarını filtrele (güncellenmiş veya sonradan yüklenmiş olanlar hariç).
-                val isSystemApp = (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
-                val isUpdatedSystemApp = (appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0
-                if (isSystemApp && !isUpdatedSystemApp) {
-                    continue
-                }
+            val appName = runCatching { pm.getApplicationLabel(appInfo).toString() }
+                .getOrDefault(fallbackName)
+            // Sistem uygulamalarını hariç tut; güncellenmiş sistem uygulamaları gösterilebilir
+            val isSystemApp = (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+            val isUpdatedSystemApp = (appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0
+            if (isSystemApp && !isUpdatedSystemApp) return@forEach
 
-                // Adım 3: Uygulama adını güvenli bir şekilde al. Adı olmayanları atla.
-                val appName = appInfo.loadLabel(pm)?.toString()
-                if (appName.isNullOrEmpty()) {
-                    continue
-                }
+            apps.add(AppInfo(appName, pkg))
+        }
 
-                apps.add(AppInfo(appName, appInfo.packageName))
-
-            } catch (e: Exception) {
-                // Herhangi bir paketi okurken hata olursa, onu atla ve devam et.
-                Log.w("OtoService", "Uygulama listesi oluşturulurken bir paket atlandı: ${appInfo.packageName}", e)
+        if (apps.isEmpty()) {
+            Log.w("OtoService", "Desteklenen uygulama bulunamadı. Geniş tarama başlatılıyor.")
+            // Nadiren kullanılan paketleri yakalamak için ACTION_SEND filtresine sahip uygulamaları kontrol et
+            val candidates = pm.queryIntentActivities(Intent(Intent.ACTION_SEND).setType("text/plain"), 0)
+            candidates.forEach { info ->
+                val pkg = info.activityInfo.packageName
+                val appName = info.loadLabel(pm)?.toString() ?: pkg
+                apps.add(AppInfo(appName, pkg))
             }
         }
-        return apps.sortedBy { it.name.lowercase() } // İsme göre sırala
+
+        return apps.distinctBy { it.packageName }.sortedBy { it.name.lowercase() }
+    }
+
+    /**
+     * Kaldırılmış uygulamaları tercih listesinden siler ve UI'ı temizler.
+     */
+    private fun cleanupMissingSelections() {
+        val pm = requireContext().packageManager
+        val selected = prefs.getStringList(PreferenceStore.KEY_SELECTED_APPS)
+        val stillInstalled = selected.filter { pkg ->
+            runCatching { pm.getApplicationInfo(pkg, 0) }.getOrNull() != null
+        }
+        if (stillInstalled.size != selected.size) {
+            prefs.setStringList(PreferenceStore.KEY_SELECTED_APPS, stillInstalled)
+        }
     }
 
 
@@ -136,11 +179,13 @@ class AutomationSettingsFragment : Fragment() {
         val selectedApps = prefs.getStringList(PreferenceStore.KEY_SELECTED_APPS)
 
         if (selectedApps.isEmpty()) {
-            val tv = TextView(requireContext()).apply { text = "Henüz uygulama seçilmedi." }
+            val tv = TextView(requireContext()).apply { text = getString(R.string.no_selected_apps) }
             chipContainer.addView(tv)
         } else {
             selectedApps.forEach { pkg ->
-                val appLabel = runCatching { pm.getApplicationLabel(pm.getApplicationInfo(pkg, 0)).toString() }.getOrDefault(pkg)
+                val appLabel = runCatching {
+                    pm.getApplicationLabel(pm.getApplicationInfo(pkg, 0)).toString()
+                }.getOrDefault(pkg)
                 val chipView = TextView(requireContext()).apply {
                     text = appLabel
                     setPadding(16, 8, 16, 8)
@@ -150,4 +195,11 @@ class AutomationSettingsFragment : Fragment() {
             }
         }
     }
+
+    private fun isNotificationServiceEnabled(): Boolean {
+        val enabled = Settings.Secure.getString(requireContext().contentResolver, "enabled_notification_listeners")
+        val componentName = "${requireContext().packageName}/${AutomationService::class.java.name}"
+        return enabled?.contains(componentName) == true
+    }
 }
+

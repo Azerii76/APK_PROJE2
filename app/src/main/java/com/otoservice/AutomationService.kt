@@ -1,5 +1,6 @@
 package com.otoservice
 
+import android.app.Notification
 import android.app.PendingIntent
 import android.app.RemoteInput
 import android.content.Intent
@@ -26,71 +27,80 @@ class AutomationService : NotificationListenerService() {
         val allowed = prefs.getStringList(PreferenceStore.KEY_SELECTED_APPS)
         if (allowed.isNotEmpty() && !allowed.contains(sbn.packageName)) return
 
-        val extras = sbn.notification.extras
-        val text = extras.getCharSequence("android.text")?.toString() ?: return
-        val title = extras.getCharSequence("android.title")?.toString() ?: ""
-        val contactKey = sbn.packageName + "|" + title
+        val notification = sbn.notification
+        if (notification.category == Notification.CATEGORY_SERVICE) return
 
-        val freq = prefs.getLong(PreferenceStore.KEY_FREQUENCY_SECONDS, 5L).coerceAtLeast(5L) * 1000
+        val extras = notification.extras
+        val text = extras.getCharSequence(Notification.EXTRA_TEXT)?.toString() ?: return
+        val title = extras.getCharSequence(Notification.EXTRA_TITLE)?.toString().orEmpty()
+        val conversation = extras.getCharSequence(Notification.EXTRA_CONVERSATION_TITLE)?.toString().orEmpty()
+        val contactKey = sbn.packageName + "|" + (conversation.ifBlank { title.ifBlank { sbn.packageName } })
+
+        val freq = prefs.getLong(PreferenceStore.KEY_FREQUENCY_SECONDS, 15L).coerceAtLeast(5L) * 1000
         val last = lastSend[contactKey] ?: 0L
         if (System.currentTimeMillis() - last < freq) return
 
-        val replyText = prefs.getString(PreferenceStore.KEY_REPLY_TEXT, "Merhaba, müsait değilim") ?: return
-        
+        val replyText = prefs.getString(PreferenceStore.KEY_REPLY_TEXT, "")?.trim().orEmpty()
+        if (replyText.isBlank()) {
+            Log.d("OtoService", "Yanıt metni boş olduğu için otomatik yanıt gönderilmedi.")
+            return
+        }
+
         // GERÇEK YANIT GÖNDERME İŞLEMİ
-        sendReply(sbn, replyText)
-        
+        if (!sendReply(sbn, replyText)) return
+
         lastSend[contactKey] = System.currentTimeMillis()
-        appendLog(sbn.packageName, title.ifEmpty { "Bilinmeyen" }, replyText.take(60))
+        val preview = "Gelen: ${text.take(80)} | Gönderilen: ${replyText.take(80)}"
+        appendLog(sbn.packageName, conversation.ifEmpty { title.ifEmpty { "Bilinmeyen" } }, preview)
     }
 
-    private fun sendReply(sbn: StatusBarNotification, replyText: String) {
+    private fun sendReply(sbn: StatusBarNotification, replyText: String): Boolean {
         val notification = sbn.notification
-        val actions = notification.actions
-        val extras = notification.extras
+        val actions = notification.actions ?: emptyArray()
 
-        if (actions.isNullOrEmpty()) return
+        if (actions.isEmpty()) return false
 
         // 1. "Yanıtla" eylemini bul
         var replyAction: PendingIntent? = null
         var remoteInput: RemoteInput? = null
         for (action in actions) {
-            if (action.remoteInputs.isNullOrEmpty()) continue
-            for (input in action.remoteInputs) {
-                if (input.resultKey.equals("direct_reply", ignoreCase = true) || input.label.toString().contains("Yanıtla", ignoreCase = true)) {
+            val inputs = action.remoteInputs ?: continue
+            inputs.firstOrNull { it.allowFreeFormInput || it.resultKey.contains("reply", true) }
+                ?.let { input ->
                     remoteInput = input
                     replyAction = action.actionIntent
-                    break
+                    return@for
                 }
-            }
-            if (remoteInput != null) break
         }
 
         if (replyAction == null || remoteInput == null) {
             Log.d("OtoService", "Bu bildirimde yanıt eylemi bulunamadı: ${sbn.packageName}")
-            return
+            return false
         }
 
         // 2. Yanıtı hazırla ve gönder
-        val resultBundle = Bundle()
-        resultBundle.putCharSequence(remoteInput.resultKey, replyText)
-
+        val resultBundle = Bundle().apply { putCharSequence(remoteInput!!.resultKey, replyText) }
         val replyIntent = Intent()
-        RemoteInput.addResultsToIntent(arrayOf(remoteInput), replyIntent, resultBundle)
+        RemoteInput.addResultsToIntent(arrayOf(remoteInput!!), replyIntent, resultBundle)
 
-        try {
-            replyAction.send(applicationContext, 0, replyIntent)
+        return try {
+            replyAction?.send(applicationContext, 0, replyIntent)
             Log.d("OtoService", "Yanıt başarıyla gönderildi -> ${sbn.packageName}: $replyText")
+            true
         } catch (e: PendingIntent.CanceledException) {
             Log.e("OtoService", "Yanıt gönderme işlemi iptal edildi.", e)
+            false
         }
     }
 
     private fun appendLog(pkg: String, target: String, msg: String) {
+        val appLabel = runCatching {
+            packageManager.getApplicationLabel(packageManager.getApplicationInfo(pkg, 0)).toString()
+        }.getOrDefault(pkg)
         val logsRaw = prefs.getString(PreferenceStore.KEY_LOGS, null)
         val arr = if (logsRaw != null) runCatching { JSONArray(logsRaw) }.getOrDefault(JSONArray()) else JSONArray()
         val obj = JSONObject()
-        obj.put("app", pkg)
+        obj.put("app", appLabel)
         obj.put("target", target)
         obj.put("time", System.currentTimeMillis())
         obj.put("msg", msg)
