@@ -15,4 +15,9 @@
     <string name="select_applications">Uygulama Seç</string>
     <string name="license_screen">Lisans</string>
     <string name="open_license_screen">Lisans ekranına git</string>
+    <string name="default_reply">Merhaba, şu anda meşgulüm. Uygun olduğumda size döneceğim.</string>
+    <string name="no_selected_apps">Henüz uygulama seçilmedi.</string>
+    <string name="mock_location_instruction">Geliştirici Seçenekleri'nde "Sahte konum uygulaması" olarak OtoService'i işaretleyin.</string>
+    <string name="location_status_on">Sahte konum servisi aktif ve İstanbul ilçeleri arasında değişiyor.</string>
+    <string name="location_status_off">Sahte konum servisi kapalı.</string>
 </resources>
